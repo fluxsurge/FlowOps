@@ -14,8 +14,8 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #0b0d10;
-            color: #e8edf5;
+            background-color: #f8fafc;
+            color: #1e293b;
             line-height: 1.6;
         }
 
@@ -26,17 +26,17 @@
         }
 
         a {
-            color: #6c8cff;
+            color: #4f6df5;
             text-decoration: none;
         }
 
         /* ===== 导航 ===== */
         .navbar {
             padding: 18px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            border-bottom: 1px solid #e2e8f0;
             position: sticky;
             top: 0;
-            background: rgba(11, 13, 16, 0.85);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
             z-index: 100;
         }
@@ -54,16 +54,17 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            color: #0f172a;
         }
 
         .logo i {
-            color: #6c8cff;
+            color: #4f6df5;
             font-size: 26px;
         }
 
         .logo span {
             font-weight: 400;
-            color: #6a7a94;
+            color: #64748b;
             font-size: 14px;
             margin-left: 4px;
         }
@@ -77,17 +78,17 @@
         }
 
         .nav-links a {
-            color: #a8b2c8;
+            color: #475569;
             transition: color 0.2s;
         }
 
         .nav-links a:hover {
-            color: #ffffff;
+            color: #0f172a;
         }
 
         .nav-cta {
-            background: #6c8cff;
-            color: #0b0d10 !important;
+            background: #4f6df5;
+            color: #ffffff !important;
             padding: 8px 22px;
             border-radius: 40px;
             font-weight: 600;
@@ -95,7 +96,8 @@
         }
 
         .nav-cta:hover {
-            background: #5a7ae8 !important;
+            background: #3b5de7 !important;
+            color: #ffffff !important;
         }
 
         /* ===== Hero ===== */
@@ -106,8 +108,8 @@
 
         .hero-badge {
             display: inline-block;
-            background: rgba(108, 140, 255, 0.12);
-            color: #6c8cff;
+            background: #eef2ff;
+            color: #4f6df5;
             font-size: 13px;
             font-weight: 600;
             padding: 6px 20px;
@@ -122,28 +124,29 @@
             letter-spacing: -1.5px;
             line-height: 1.1;
             margin-bottom: 12px;
+            color: #0f172a;
         }
 
         .hero h1 span {
-            background: linear-gradient(135deg, #6c8cff, #a78bfa);
+            background: linear-gradient(135deg, #4f6df5, #7c3aed);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero .subtitle {
             font-size: 20px;
-            color: #a8b2c8;
+            color: #475569;
             max-width: 680px;
             margin: 0 auto 12px;
         }
 
         .hero .subtitle strong {
-            color: #e8edf5;
+            color: #0f172a;
         }
 
         .hero-tagline {
             font-size: 16px;
-            color: #6a7a94;
+            color: #64748b;
             margin-bottom: 32px;
             letter-spacing: 2px;
         }
@@ -156,8 +159,8 @@
         }
 
         .btn-primary {
-            background: #6c8cff;
-            color: #0b0d10;
+            background: #4f6df5;
+            color: #ffffff;
             padding: 14px 40px;
             border-radius: 40px;
             font-weight: 700;
@@ -171,13 +174,13 @@
         }
 
         .btn-primary:hover {
-            background: #5a7ae8;
+            background: #3b5de7;
             transform: translateY(-2px);
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.06);
-            color: #e8edf5;
+            background: #f1f5f9;
+            color: #1e293b;
             padding: 14px 32px;
             border-radius: 40px;
             font-weight: 600;
@@ -185,13 +188,13 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid #e2e8f0;
             transition: background 0.2s;
             cursor: pointer;
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.12);
+            background: #e2e8f0;
         }
 
         .hero-stats {
@@ -200,7 +203,7 @@
             gap: 48px;
             margin-top: 40px;
             padding-top: 32px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            border-top: 1px solid #e2e8f0;
         }
 
         .hero-stats .stat {
@@ -210,12 +213,12 @@
         .hero-stats .stat .num {
             font-size: 28px;
             font-weight: 700;
-            color: #6c8cff;
+            color: #4f6df5;
         }
 
         .hero-stats .stat .label {
             font-size: 13px;
-            color: #6a7a94;
+            color: #64748b;
             margin-top: 2px;
         }
 
@@ -226,11 +229,12 @@
             letter-spacing: -0.5px;
             text-align: center;
             margin-bottom: 10px;
+            color: #0f172a;
         }
 
         .section-desc {
             text-align: center;
-            color: #a8b2c8;
+            color: #475569;
             font-size: 18px;
             max-width: 660px;
             margin: 0 auto 44px;
@@ -238,7 +242,7 @@
 
         .section {
             padding: 72px 0 56px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid #e2e8f0;
         }
 
         /* ===== 流程 ===== */
@@ -251,32 +255,34 @@
         }
 
         .flow-step {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             border-radius: 12px;
             padding: 20px 16px;
             text-align: center;
-            transition: border-color 0.2s;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
 
         .flow-step:hover {
-            border-color: rgba(108, 140, 255, 0.3);
+            border-color: #4f6df5;
+            box-shadow: 0 4px 12px rgba(79, 109, 245, 0.08);
         }
 
         .flow-step .icon {
             font-size: 28px;
-            color: #6c8cff;
+            color: #4f6df5;
             margin-bottom: 6px;
         }
 
         .flow-step .label {
             font-size: 14px;
             font-weight: 600;
+            color: #0f172a;
         }
 
         .flow-step .desc {
             font-size: 12px;
-            color: #6a7a94;
+            color: #64748b;
             margin-top: 2px;
         }
 
@@ -284,7 +290,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #6a7a94;
+            color: #94a3b8;
             font-size: 20px;
             padding: 0 4px;
         }
@@ -297,21 +303,21 @@
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             border-radius: 16px;
             padding: 28px 24px;
-            transition: border-color 0.2s, background 0.2s;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
 
         .feature-card:hover {
-            border-color: rgba(108, 140, 255, 0.25);
-            background: rgba(255, 255, 255, 0.05);
+            border-color: #4f6df5;
+            box-shadow: 0 8px 24px rgba(79, 109, 245, 0.06);
         }
 
         .feature-card .icon {
             font-size: 28px;
-            color: #6c8cff;
+            color: #4f6df5;
             margin-bottom: 12px;
         }
 
@@ -319,11 +325,20 @@
             font-size: 17px;
             font-weight: 700;
             margin-bottom: 6px;
+            color: #0f172a;
         }
 
         .feature-card p {
-            color: #a8b2c8;
+            color: #475569;
             font-size: 14px;
+        }
+
+        .feature-card code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #0f172a;
         }
 
         /* ===== 理念 ===== */
@@ -334,16 +349,17 @@
         }
 
         .philosophy-item {
-            background: rgba(255, 255, 255, 0.02);
+            background: #ffffff;
             border-radius: 12px;
             padding: 24px 20px;
-            border-left: 3px solid #6c8cff;
+            border-left: 4px solid #4f6df5;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         }
 
         .philosophy-item .num {
             font-size: 14px;
             font-weight: 700;
-            color: #6c8cff;
+            color: #4f6df5;
             letter-spacing: 1px;
         }
 
@@ -351,11 +367,20 @@
             font-size: 17px;
             font-weight: 700;
             margin: 4px 0 6px;
+            color: #0f172a;
         }
 
         .philosophy-item p {
-            color: #a8b2c8;
+            color: #475569;
             font-size: 14px;
+        }
+
+        .philosophy-item code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #0f172a;
         }
 
         /* ===== 模块架构 ===== */
@@ -368,28 +393,35 @@
         }
 
         .module-tag {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
             border-radius: 8px;
             padding: 10px 14px;
             text-align: center;
             font-size: 13px;
             font-weight: 500;
-            color: #c8d0e0;
-            transition: border-color 0.2s;
+            color: #0f172a;
+            transition: border-color 0.2s, background 0.2s;
         }
 
         .module-tag:hover {
-            border-color: rgba(108, 140, 255, 0.3);
+            border-color: #4f6df5;
+            background: #eef2ff;
         }
 
         .module-tag .fn {
-            color: #6a7a94;
+            color: #64748b;
             font-weight: 400;
             font-size: 11px;
         }
 
-        /* ===== 测试imonials ===== */
+        .module-tag code {
+            background: transparent;
+            padding: 0;
+            color: #0f172a;
+        }
+
+        /* ===== 用户评价 ===== */
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -397,15 +429,20 @@
         }
 
         .testimonial-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             border-radius: 14px;
             padding: 24px 22px;
+            transition: box-shadow 0.2s;
+        }
+
+        .testimonial-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
         }
 
         .testimonial-card .text {
             font-size: 15px;
-            color: #d0d8e6;
+            color: #1e293b;
             font-style: italic;
             margin-bottom: 12px;
         }
@@ -413,10 +450,11 @@
         .testimonial-card .author {
             font-weight: 600;
             font-size: 14px;
+            color: #0f172a;
         }
 
         .testimonial-card .role {
-            color: #6a7a94;
+            color: #64748b;
             font-size: 13px;
         }
 
@@ -430,20 +468,21 @@
         }
 
         .faq-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             border-radius: 12px;
             padding: 18px 22px;
             transition: border-color 0.2s;
         }
 
         .faq-item:hover {
-            border-color: rgba(255, 255, 255, 0.1);
+            border-color: #cbd5e1;
         }
 
         .faq-item .question {
             font-weight: 600;
             font-size: 15px;
+            color: #0f172a;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -451,39 +490,52 @@
         }
 
         .faq-item .question i {
-            color: #6c8cff;
+            color: #4f6df5;
             font-size: 13px;
             opacity: 0.6;
         }
 
         .faq-item .answer {
-            color: #a8b2c8;
+            color: #475569;
             font-size: 14px;
             margin-top: 6px;
             padding-right: 20px;
+        }
+
+        .faq-item .answer code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #0f172a;
+        }
+
+        .faq-item .answer strong {
+            color: #0f172a;
         }
 
         /* ===== Download ===== */
         .download-section {
             text-align: center;
             padding: 56px 0 64px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid #e2e8f0;
         }
 
         .download-section h2 {
             font-size: 34px;
             font-weight: 700;
             margin-bottom: 8px;
+            color: #0f172a;
         }
 
         .download-section .sub {
-            color: #a8b2c8;
+            color: #475569;
             font-size: 18px;
             margin-bottom: 28px;
         }
 
         .download-section .meta {
-            color: #6a7a94;
+            color: #64748b;
             font-size: 14px;
             margin-top: 16px;
         }
@@ -495,15 +547,15 @@
         /* ===== Footer ===== */
         .footer {
             padding: 32px 0 28px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid #e2e8f0;
             text-align: center;
-            color: #6a7a94;
+            color: #64748b;
             font-size: 14px;
         }
 
         .footer .brand {
             font-weight: 600;
-            color: #e8edf5;
+            color: #0f172a;
         }
 
         .footer .links {
@@ -515,18 +567,18 @@
         }
 
         .footer .links a {
-            color: #6a7a94;
+            color: #64748b;
             transition: color 0.2s;
         }
 
         .footer .links a:hover {
-            color: #e8edf5;
+            color: #0f172a;
         }
 
         .footer .version {
             margin-top: 10px;
             font-size: 12px;
-            color: #4a5a74;
+            color: #94a3b8;
         }
 
         /* ===== 响应式 ===== */
@@ -785,7 +837,7 @@
                 <div class="module-tag"><code>popup_notify.py</code> <span class="fn">弹窗通知</span></div>
                 <div class="module-tag"><code>version_manager.py</code> <span class="fn">版本/README同步</span></div>
             </div>
-            <p style="text-align:center; color:#6a7a94; font-size:13px; margin-top:20px;">
+            <p style="text-align:center; color:#64748b; font-size:13px; margin-top:20px;">
                 📁 数据目录：<code>%LOCALAPPDATA%\FlowOps</code> ｜ 资源：<code>rules.json</code> · <code>device_config.csv</code> · <code>template.docx</code>
             </p>
         </div>
@@ -855,6 +907,7 @@
         <div class="container">
             <h2>准备好让操作自然流动了吗？</h2>
             <p class="sub">下载 FlowOps，体验智能操作票生成的全新方式。</p>
+            <!-- 将 href="#" 替换为你自己的 OSS/COS 直链地址即可 -->
             <a href="#" class="btn-primary" style="font-size:18px; padding:16px 52px;">
                 <i class="fas fa-download"></i> 下载 FlowOps v1.2.1
             </a>
@@ -872,7 +925,7 @@
     <footer class="footer">
         <div class="container">
             <div class="brand">
-                <i class="fas fa-bolt" style="color:#6c8cff;"></i> FlowOps · 智能操作流生成平台
+                <i class="fas fa-bolt" style="color:#4f6df5;"></i> FlowOps · 智能操作流生成平台
             </div>
             <div class="links">
                 <a href="#features">功能</a>
