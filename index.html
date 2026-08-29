@@ -1,18 +1,895 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的软件</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlowOps · 智能操作流生成平台</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-        .btn { background: #007bff; color: white; padding: 15px 30px; border-radius: 5px; text-decoration: none; font-size: 20px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0b0d10;
+            color: #e8edf5;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        a {
+            color: #6c8cff;
+            text-decoration: none;
+        }
+
+        /* ===== 导航 ===== */
+        .navbar {
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            position: sticky;
+            top: 0;
+            background: rgba(11, 13, 16, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: #6c8cff;
+            font-size: 26px;
+        }
+
+        .logo span {
+            font-weight: 400;
+            color: #6a7a94;
+            font-size: 14px;
+            margin-left: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-size: 14px;
+            font-weight: 500;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #a8b2c8;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .nav-cta {
+            background: #6c8cff;
+            color: #0b0d10 !important;
+            padding: 8px 22px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: #5a7ae8 !important;
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            padding: 72px 0 56px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(108, 140, 255, 0.12);
+            color: #6c8cff;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 20px;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #6c8cff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero .subtitle {
+            font-size: 20px;
+            color: #a8b2c8;
+            max-width: 680px;
+            margin: 0 auto 12px;
+        }
+
+        .hero .subtitle strong {
+            color: #e8edf5;
+        }
+
+        .hero-tagline {
+            font-size: 16px;
+            color: #6a7a94;
+            margin-bottom: 32px;
+            letter-spacing: 2px;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #6c8cff;
+            color: #0b0d10;
+            padding: 14px 40px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.2s, transform 0.1s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #5a7ae8;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: #e8edf5;
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .hero-stats .stat {
+            text-align: center;
+        }
+
+        .hero-stats .stat .num {
+            font-size: 28px;
+            font-weight: 700;
+            color: #6c8cff;
+        }
+
+        .hero-stats .stat .label {
+            font-size: 13px;
+            color: #6a7a94;
+            margin-top: 2px;
+        }
+
+        /* ===== 通用 ===== */
+        .section-title {
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .section-desc {
+            text-align: center;
+            color: #a8b2c8;
+            font-size: 18px;
+            max-width: 660px;
+            margin: 0 auto 44px;
+        }
+
+        .section {
+            padding: 72px 0 56px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* ===== 流程 ===== */
+        .flow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .flow-step {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 20px 16px;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+
+        .flow-step:hover {
+            border-color: rgba(108, 140, 255, 0.3);
+        }
+
+        .flow-step .icon {
+            font-size: 28px;
+            color: #6c8cff;
+            margin-bottom: 6px;
+        }
+
+        .flow-step .label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .flow-step .desc {
+            font-size: 12px;
+            color: #6a7a94;
+            margin-top: 2px;
+        }
+
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6a7a94;
+            font-size: 20px;
+            padding: 0 4px;
+        }
+
+        /* ===== 功能卡片 ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 28px 24px;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(108, 140, 255, 0.25);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-card .icon {
+            font-size: 28px;
+            color: #6c8cff;
+            margin-bottom: 12px;
+        }
+
+        .feature-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .feature-card p {
+            color: #a8b2c8;
+            font-size: 14px;
+        }
+
+        /* ===== 理念 ===== */
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .philosophy-item {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            padding: 24px 20px;
+            border-left: 3px solid #6c8cff;
+        }
+
+        .philosophy-item .num {
+            font-size: 14px;
+            font-weight: 700;
+            color: #6c8cff;
+            letter-spacing: 1px;
+        }
+
+        .philosophy-item h4 {
+            font-size: 17px;
+            font-weight: 700;
+            margin: 4px 0 6px;
+        }
+
+        .philosophy-item p {
+            color: #a8b2c8;
+            font-size: 14px;
+        }
+
+        /* ===== 模块架构 ===== */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            max-width: 880px;
+            margin: 0 auto;
+        }
+
+        .module-tag {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            padding: 10px 14px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            color: #c8d0e0;
+            transition: border-color 0.2s;
+        }
+
+        .module-tag:hover {
+            border-color: rgba(108, 140, 255, 0.3);
+        }
+
+        .module-tag .fn {
+            color: #6a7a94;
+            font-weight: 400;
+            font-size: 11px;
+        }
+
+        /* ===== 测试imonials ===== */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 24px 22px;
+        }
+
+        .testimonial-card .text {
+            font-size: 15px;
+            color: #d0d8e6;
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+
+        .testimonial-card .author {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .testimonial-card .role {
+            color: #6a7a94;
+            font-size: 13px;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-list {
+            max-width: 740px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 18px 22px;
+            transition: border-color 0.2s;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .faq-item .question {
+            font-weight: 600;
+            font-size: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: default;
+        }
+
+        .faq-item .question i {
+            color: #6c8cff;
+            font-size: 13px;
+            opacity: 0.6;
+        }
+
+        .faq-item .answer {
+            color: #a8b2c8;
+            font-size: 14px;
+            margin-top: 6px;
+            padding-right: 20px;
+        }
+
+        /* ===== Download ===== */
+        .download-section {
+            text-align: center;
+            padding: 56px 0 64px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .download-section h2 {
+            font-size: 34px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .download-section .sub {
+            color: #a8b2c8;
+            font-size: 18px;
+            margin-bottom: 28px;
+        }
+
+        .download-section .meta {
+            color: #6a7a94;
+            font-size: 14px;
+            margin-top: 16px;
+        }
+
+        .download-section .meta i {
+            margin: 0 12px 0 0;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            padding: 32px 0 28px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            color: #6a7a94;
+            font-size: 14px;
+        }
+
+        .footer .brand {
+            font-weight: 600;
+            color: #e8edf5;
+        }
+
+        .footer .links {
+            margin-top: 8px;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer .links a {
+            color: #6a7a94;
+            transition: color 0.2s;
+        }
+
+        .footer .links a:hover {
+            color: #e8edf5;
+        }
+
+        .footer .version {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #4a5a74;
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            .hero .subtitle {
+                font-size: 17px;
+            }
+            .section-title {
+                font-size: 26px;
+            }
+            .nav-links {
+                gap: 14px;
+                font-size: 13px;
+            }
+            .nav-cta {
+                padding: 6px 14px;
+                font-size: 12px;
+            }
+            .hero-stats {
+                gap: 24px;
+                flex-wrap: wrap;
+            }
+            .hero-stats .stat .num {
+                font-size: 22px;
+            }
+            .flow-steps {
+                grid-template-columns: 1fr 1fr;
+            }
+            .flow-arrow {
+                display: none;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+            }
+            .modules-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar .container {
+                flex-wrap: wrap;
+                gap: 10px;
+                justify-content: center;
+            }
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-steps {
+                grid-template-columns: 1fr;
+            }
+            .faq-item .question {
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>🚀 我的软件名称</h1>
-    <p>一句话描述你的软件</p>
-    <a href="#" class="btn">📥 下载软件</a>
-    <p style="margin-top: 50px; color: #999;">版本 1.0</p>
+
+    <!-- ===== 导航 ===== -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-bolt"></i> FlowOps
+                <span>v1.2.1</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">功能</a>
+                <a href="#philosophy">理念</a>
+                <a href="#modules">架构</a>
+                <a href="#testimonials">评价</a>
+                <a href="#faq">常见问题</a>
+                <a href="#download" class="nav-cta"><i class="fas fa-download"></i> 下载</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <i class="fas fa-arrow-trend-up"></i> v1.2.1 · 智能操作流生成平台
+            </div>
+            <h1>
+                让操作 <span>自然流动</span>
+            </h1>
+            <p class="subtitle">
+                FlowOps 面向配电运检场景，通过 <strong>任务解析 · 规则匹配 · 模板引擎</strong>，
+                自动将操作任务转换为逻辑关联的操作项目，生成标准化倒闸操作票。
+            </p>
+            <p class="hero-tagline">⚡ 操作任务输入 → 自动解析 → 智能匹配 → 操作项目生成 → 形成完整操作票</p>
+            <div class="hero-actions">
+                <a href="#download" class="btn-primary">
+                    <i class="fas fa-download"></i> 立即下载
+                </a>
+                <a href="#features" class="btn-secondary">
+                    <i class="fas fa-chevron-right"></i> 了解更多
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="num">3</div>
+                    <div class="label">智能入口</div>
+                </div>
+                <div class="stat">
+                    <div class="num">1</div>
+                    <div class="label">单文件 EXE</div>
+                </div>
+                <div class="stat">
+                    <div class="num">4</div>
+                    <div class="label">核心模块</div>
+                </div>
+                <div class="stat">
+                    <div class="num">Word</div>
+                    <div class="label">标准输出</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 流程可视化 ===== -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <h2 class="section-title">智能操作流</h2>
+            <p class="section-desc">从任务到操作票，全流程自动流转</p>
+            <div class="flow-steps">
+                <div class="flow-step">
+                    <div class="icon"><i class="fas fa-keyboard"></i></div>
+                    <div class="label">输入任务</div>
+                    <div class="desc">文本 / PDF / Word</div>
+                </div>
+                <div class="flow-arrow"><i class="fas fa-chevron-right"></i></div>
+                <div class="flow-step">
+                    <div class="icon"><i class="fas fa-brain"></i></div>
+                    <div class="label">自动解析</div>
+                    <div class="desc">设备 / 状态 / PT识别</div>
+                </div>
+                <div class="flow-arrow"><i class="fas fa-chevron-right"></i></div>
+                <div class="flow-step">
+                    <div class="icon"><i class="fas fa-cogs"></i></div>
+                    <div class="label">规则匹配</div>
+                    <div class="desc">四元组精确索引</div>
+                </div>
+                <div class="flow-arrow"><i class="fas fa-chevron-right"></i></div>
+                <div class="flow-step">
+                    <div class="icon"><i class="fas fa-file-word"></i></div>
+                    <div class="label">生成操作票</div>
+                    <div class="desc">Word 输出 · 可打印</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 功能 ===== -->
+    <section class="section" id="features">
+        <div class="container">
+            <h2 class="section-title">功能亮点</h2>
+            <p class="section-desc">三路智能入口 + 规则驱动引擎 + 规范输出</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-route"></i></div>
+                    <h3>三路智能入口</h3>
+                    <p>操作任务文本 → 综合票；<code>.doc/.docx/.pdf</code> 路径 → 逐项票；<code>.csv</code> → 合并附加配置。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-microchip"></i></div>
+                    <h3>自动解析</h3>
+                    <p>识别设备类型、开关号、前后状态，兼容“冷备用/热备用”等易错表述，PT 设备自动归一。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-table"></i></div>
+                    <h3>规则驱动引擎</h3>
+                    <p>以 <code>(设备类型, 前状态, 后状态, 配置)</code> 四元组精确匹配模板，派生开关/刀闸全名。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-file-alt"></i></div>
+                    <h3>模板引擎 &amp; 规范输出</h3>
+                    <p>自动替换占位符、填充操作表、补齐空行，输出 <strong>标准 Word 操作票</strong>，可直接打印。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-sort-numeric-up"></i></div>
+                    <h3>智能赋号 &amp; 在线表联动</h3>
+                    <p>记住上一轮票号，支持一键累加；启动即引导打开“操作票编号在线表”，无缝衔接。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-gem"></i></div>
+                    <h3>开箱即用 · 可移植</h3>
+                    <p>单文件 EXE，无需 Python 环境；数据目录自动播种，规则/模板可独立替换。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 设计理念 ===== -->
+    <section class="section" id="philosophy">
+        <div class="container">
+            <h2 class="section-title">设计理念</h2>
+            <p class="section-desc">不只是操作票生成器，而是智能操作流平台</p>
+            <div class="philosophy-grid">
+                <div class="philosophy-item">
+                    <div class="num">01</div>
+                    <h4>规则驱动 · 逻辑关联</h4>
+                    <p>操作项目是“一条自然展开的操作流”，而非简单列表。从任务描述到操作逻辑的智能转换。</p>
+                </div>
+                <div class="philosophy-item">
+                    <div class="num">02</div>
+                    <h4>克制界面</h4>
+                    <p>只用 Rich 排版着色；仅错误用红色，其余靠图标区分，专注高效，不花哨。</p>
+                </div>
+                <div class="philosophy-item">
+                    <div class="num">03</div>
+                    <h4>数据与展示分离</h4>
+                    <p>规则、模板、配置集中在数据目录（<code>%LOCALAPPDATA%\FlowOps</code>），易维护、可替换。</p>
+                </div>
+                <div class="philosophy-item">
+                    <div class="num">04</div>
+                    <h4>可移植 · 免配置</h4>
+                    <p>单文件 EXE 双击即用；路径统一由 <code>app_paths.py</code> 管理，支持 <code>FLOWOPS_DATA_DIR</code> 覆盖。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 模块架构 ===== -->
+    <section class="section" id="modules">
+        <div class="container">
+            <h2 class="section-title">模块架构</h2>
+            <p class="section-desc">清晰解耦，核心模块各司其职</p>
+            <div class="modules-grid">
+                <div class="module-tag"><code>main.py</code> <span class="fn">入口/编排</span></div>
+                <div class="module-tag"><code>app_paths.py</code> <span class="fn">路径中枢</span></div>
+                <div class="module-tag"><code>jiexiqi7_1.py</code> <span class="fn">任务解析</span></div>
+                <div class="module-tag"><code>opsoutput1_3pro.py</code> <span class="fn">步骤生成</span></div>
+                <div class="module-tag"><code>fduxiecsv7.py</code> <span class="fn">配置缓存</span></div>
+                <div class="module-tag"><code>pdfduqu5docpromax.py</code> <span class="fn">PDF/Word提取</span></div>
+                <div class="module-tag"><code>newsteps3_7.py</code> <span class="fn">逐项票加工</span></div>
+                <div class="module-tag"><code>outputdoc3_3.py</code> <span class="fn">文档生成</span></div>
+                <div class="module-tag"><code>popup_notify.py</code> <span class="fn">弹窗通知</span></div>
+                <div class="module-tag"><code>version_manager.py</code> <span class="fn">版本/README同步</span></div>
+            </div>
+            <p style="text-align:center; color:#6a7a94; font-size:13px; margin-top:20px;">
+                📁 数据目录：<code>%LOCALAPPDATA%\FlowOps</code> ｜ 资源：<code>rules.json</code> · <code>device_config.csv</code> · <code>template.docx</code>
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== 用户评价 ===== -->
+    <section class="section" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">用户怎么说</h2>
+            <p class="section-desc">来自配电运检一线人员的真实反馈</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="text">“以前编操作票全靠手工排列，容易漏项。FlowOps 自动生成逻辑关联的操作流，准确率提升太多了。”</div>
+                    <div class="author">张工</div>
+                    <div class="role">配电运检 · 高级工程师</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="text">“规则驱动引擎太强了，复杂的倒闸操作一键生成，还能直接导出 Word 打印，省去了大量重复劳动。”</div>
+                    <div class="author">李值长</div>
+                    <div class="role">调度运行 · 值长</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="text">“单文件 EXE 真的方便，不用装 Python 环境，拷到 U 盘就能用。在线表联动让编号管理再也不乱了。”</div>
+                    <div class="author">王主任</div>
+                    <div class="role">运检部 · 主任</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section" id="faq">
+        <div class="container">
+            <h2 class="section-title">常见问题</h2>
+            <p class="section-desc">快速上手 FlowOps</p>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="question"><span>FlowOps 需要安装 Python 环境吗？</span><i class="fas fa-chevron-down"></i></div>
+                    <div class="answer">不需要。FlowOps 编译为<strong>单文件 EXE</strong>，双击即可运行，无需任何额外运行时环境。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question"><span>支持哪些输入格式？</span><i class="fas fa-chevron-down"></i></div>
+                    <div class="answer">支持三种入口：① 操作任务文本（综合票）；② <code>.doc/.docx/.pdf</code> 文件路径（逐项票）；③ <code>.csv</code> 文件路径（合并附加配置）。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question"><span>附加配置 0/2/3 分别代表什么？</span><i class="fas fa-chevron-down"></i></div>
+                    <div class="answer"><strong>0</strong>：环网箱无刀闸 / 开闭所无接地刀闸；<strong>2</strong>：三工位环网箱刀闸后缀为2 / 柱开双刀闸；<strong>3</strong>：三工位环网箱刀闸后缀为1。程序运行时会自动提示。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question"><span>如何自定义规则或模板？</span><i class="fas fa-chevron-down"></i></div>
+                    <div class="answer">直接替换数据目录（<code>%LOCALAPPDATA%\FlowOps</code>）下的 <code>rules.json</code> 或 <code>template.docx</code> 即可，无需重打包。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question"><span>生成的操票是什么格式？存在哪里？</span><i class="fas fa-chevron-down"></i></div>
+                    <div class="answer">自动保存为 <strong>Word (.docx)</strong> 格式，排版整洁，可直接打印。输出到 <code>桌面\&lt;指令号前6位&gt; 操作票\</code> 目录。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question"><span>如何获取操作票编号？</span><i class="fas fa-chevron-down"></i></div>
+                    <div class="answer">FlowOps 会记住上一轮票号，支持<strong>一键累加 (+1)</strong>，并在每张票后汇总编号映射，方便回填“操作票编号在线表”。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Download ===== -->
+    <section class="download-section" id="download">
+        <div class="container">
+            <h2>准备好让操作自然流动了吗？</h2>
+            <p class="sub">下载 FlowOps，体验智能操作票生成的全新方式。</p>
+            <a href="#" class="btn-primary" style="font-size:18px; padding:16px 52px;">
+                <i class="fas fa-download"></i> 下载 FlowOps v1.2.1
+            </a>
+            <div class="meta">
+                <i class="fas fa-box"></i> 单文件 EXE · 约 15 MB
+                <span style="margin:0 12px;">|</span>
+                <i class="fab fa-windows"></i> Windows 10 / 11
+                <span style="margin:0 12px;">|</span>
+                <i class="fas fa-file-word"></i> 输出 Word 操作票
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="brand">
+                <i class="fas fa-bolt" style="color:#6c8cff;"></i> FlowOps · 智能操作流生成平台
+            </div>
+            <div class="links">
+                <a href="#features">功能</a>
+                <a href="#philosophy">理念</a>
+                <a href="#modules">架构</a>
+                <a href="#testimonials">评价</a>
+                <a href="#faq">常见问题</a>
+                <a href="#download">下载</a>
+            </div>
+            <div style="margin-top:8px;">
+                © 2026 FlowOps · 让操作，自然流动
+            </div>
+            <div class="version">
+                版本 1.2.1 · 最后更新 2026-08-27
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
