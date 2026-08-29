@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FlowOps · 智能操作流生成平台</title>
-    <!-- 网站图标：将 FlowOps.ico 放到仓库根目录即可 -->
     <link rel="icon" href="/FlowOps.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="/FlowOps.ico" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
@@ -33,15 +32,21 @@
             text-decoration: none;
         }
 
-        /* ===== 导航 ===== */
+        /* ===== 导航栏 ===== */
         .navbar {
             padding: 18px 0;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid transparent;
             position: sticky;
             top: 0;
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
             z-index: 100;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            border-bottom-color: #e2e8f0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
         }
 
         .navbar .container {
@@ -119,18 +124,22 @@
             border-radius: 40px;
             letter-spacing: 0.3px;
             margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease 0.2s forwards;
         }
 
-        .hero h1 {
+        .hero-title {
             font-size: 52px;
             font-weight: 800;
             letter-spacing: -1.5px;
             line-height: 1.1;
             margin-bottom: 12px;
             color: #0f172a;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.3s forwards;
         }
 
-        .hero h1 span {
+        .hero-title span {
             background: linear-gradient(135deg, #4f6df5, #7c3aed);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -141,6 +150,8 @@
             color: #475569;
             max-width: 680px;
             margin: 0 auto 12px;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.4s forwards;
         }
 
         .hero .subtitle strong {
@@ -152,6 +163,8 @@
             color: #64748b;
             margin-bottom: 32px;
             letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.5s forwards;
         }
 
         .hero-actions {
@@ -159,8 +172,11 @@
             justify-content: center;
             gap: 16px;
             flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.6s forwards;
         }
 
+        /* ===== 按钮 ===== */
         .btn-primary {
             background: #4f6df5;
             color: #ffffff;
@@ -171,14 +187,15 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            transition: background 0.2s, transform 0.1s;
             border: none;
             cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
         }
 
         .btn-primary:hover {
             background: #3b5de7;
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(79, 109, 245, 0.30);
         }
 
         .btn-secondary {
@@ -192,14 +209,17 @@
             align-items: center;
             gap: 10px;
             border: 1px solid #e2e8f0;
-            transition: background 0.2s;
             cursor: pointer;
+            transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
         }
 
         .btn-secondary:hover {
             background: #e2e8f0;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
         }
 
+        /* ===== 统计数字 ===== */
         .hero-stats {
             display: flex;
             justify-content: center;
@@ -225,7 +245,7 @@
             margin-top: 2px;
         }
 
-        /* ===== 通用 ===== */
+        /* ===== 通用标题 ===== */
         .section-title {
             font-size: 34px;
             font-weight: 700;
@@ -264,7 +284,28 @@
             padding: 24px 20px;
             text-align: center;
             position: relative;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .flow-card.visible {
+            opacity: 1;
+            transform: translateX(0);
+            transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .flow-card:nth-child(1).visible {
+            transition-delay: 0.05s;
+        }
+        .flow-card:nth-child(2).visible {
+            transition-delay: 0.25s;
+        }
+        .flow-card:nth-child(3).visible {
+            transition-delay: 0.45s;
+        }
+        .flow-card:nth-child(4).visible {
+            transition-delay: 0.65s;
         }
 
         .flow-card:hover {
@@ -313,12 +354,20 @@
             border: 1px solid #e2e8f0;
             border-radius: 16px;
             padding: 28px 24px;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.4s ease, opacity 0.5s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .feature-card:hover {
             border-color: #4f6df5;
             box-shadow: 0 8px 24px rgba(79, 109, 245, 0.06);
+            transform: translateY(-4px);
         }
 
         .feature-card .icon {
@@ -347,11 +396,13 @@
             color: #0f172a;
         }
 
-        /* ===== 设计理念 ===== */
+        /* ===== 设计理念（固定两列，2×2布局） ===== */
         .philosophy-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 24px;
+            max-width: 880px;
+            margin: 0 auto;
         }
 
         .philosophy-item {
@@ -360,6 +411,18 @@
             padding: 24px 20px;
             border-left: 4px solid #4f6df5;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
+        }
+
+        .philosophy-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .philosophy-item:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
         }
 
         .philosophy-item .num {
@@ -389,48 +452,34 @@
             color: #0f172a;
         }
 
-        /* ===== 模块架构 ===== */
-        .modules-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
-            max-width: 880px;
-            margin: 0 auto;
-        }
-
-        .module-tag {
-            background: #f1f5f9;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 10px 14px;
+        /* ===== 技术标签行 ===== */
+        .tech-tagline {
             text-align: center;
+            padding: 20px 0 8px;
+            color: #94a3b8;
             font-size: 13px;
-            font-weight: 500;
-            color: #0f172a;
-            transition: border-color 0.2s, background 0.2s;
+            letter-spacing: 0.5px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 20px;
         }
 
-        .module-tag:hover {
-            border-color: #4f6df5;
-            background: #eef2ff;
-        }
-
-        .module-tag .fn {
+        .tech-tagline span {
             color: #64748b;
-            font-weight: 400;
-            font-size: 11px;
         }
 
-        .module-tag code {
-            background: transparent;
-            padding: 0;
+        .tech-tagline code {
+            background: #f1f5f9;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
             color: #0f172a;
+            font-weight: 500;
         }
 
-        /* ===== 用户评价 ===== */
+        /* ===== 用户评价（3条） ===== */
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 24px;
         }
 
@@ -439,7 +488,14 @@
             border: 1px solid #e2e8f0;
             border-radius: 14px;
             padding: 24px 22px;
-            transition: box-shadow 0.2s;
+            transition: box-shadow 0.3s ease, transform 0.4s ease, opacity 0.5s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .testimonial-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .testimonial-card:hover {
@@ -451,6 +507,7 @@
             color: #1e293b;
             font-style: italic;
             margin-bottom: 12px;
+            line-height: 1.5;
         }
 
         .testimonial-card .author {
@@ -464,7 +521,7 @@
             font-size: 13px;
         }
 
-        /* ===== FAQ ===== */
+        /* ===== FAQ（3条） ===== */
         .faq-list {
             max-width: 740px;
             margin: 0 auto;
@@ -478,11 +535,13 @@
             border: 1px solid #e2e8f0;
             border-radius: 12px;
             padding: 18px 22px;
-            transition: border-color 0.2s;
+            transition: border-color 0.3s ease, background 0.3s ease;
+            cursor: default;
         }
 
         .faq-item:hover {
             border-color: #cbd5e1;
+            background: #fafbfc;
         }
 
         .faq-item .question {
@@ -496,15 +555,21 @@
         }
 
         .faq-item .question i {
-            color: #4f6df5;
+            color: #94a3b8;
             font-size: 13px;
-            opacity: 0.6;
+            flex-shrink: 0;
+            margin-left: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .faq-item:hover .question i {
+            color: #4f6df5;
         }
 
         .faq-item .answer {
             color: #475569;
             font-size: 14px;
-            margin-top: 6px;
+            margin-top: 8px;
             padding-right: 20px;
         }
 
@@ -518,13 +583,6 @@
 
         .faq-item .answer strong {
             color: #0f172a;
-        }
-
-        .faq-item .answer .readme-link {
-            color: #4f6df5;
-            font-weight: 600;
-            text-decoration: underline;
-            cursor: pointer;
         }
 
         /* ===== Download ===== */
@@ -594,9 +652,21 @@
             color: #94a3b8;
         }
 
+        /* ===== 动画关键帧 ===== */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* ===== 响应式 ===== */
         @media (max-width: 768px) {
-            .hero h1 {
+            .hero-title {
                 font-size: 32px;
             }
             .hero .subtitle {
@@ -625,9 +695,6 @@
             }
             .philosophy-grid {
                 grid-template-columns: 1fr;
-            }
-            .modules-grid {
-                grid-template-columns: 1fr 1fr;
             }
             .testimonials-grid {
                 grid-template-columns: 1fr;
@@ -665,19 +732,45 @@
             .flow-card .desc {
                 font-size: 12px;
             }
-            .modules-grid {
-                grid-template-columns: 1fr;
-            }
             .faq-item .question {
                 font-size: 14px;
+            }
+            .faq-item .answer {
+                font-size: 13px;
+            }
+        }
+
+        /* ===== 减弱动画 ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .flow-card,
+            .feature-card,
+            .philosophy-item,
+            .testimonial-card {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .hero-title,
+            .hero .subtitle,
+            .hero-tagline,
+            .hero-actions,
+            .hero-badge {
+                opacity: 1 !important;
+                animation: none !important;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== 导航 ===== -->
-    <nav class="navbar">
+    <!-- ===== 导航栏 ===== -->
+    <nav class="navbar" id="navbar">
         <div class="container">
             <div class="logo">
                 <i class="fas fa-bolt"></i> FlowOps
@@ -686,7 +779,6 @@
             <div class="nav-links">
                 <a href="#features">功能</a>
                 <a href="#philosophy">理念</a>
-                <a href="#modules">架构</a>
                 <a href="#testimonials">评价</a>
                 <a href="#faq">常见问题</a>
                 <a href="#download" class="nav-cta"><i class="fas fa-download"></i> 下载</a>
@@ -700,7 +792,7 @@
             <div class="hero-badge">
                 <i class="fas fa-arrow-trend-up"></i> v1.2.1 · 智能操作流生成平台
             </div>
-            <h1>
+            <h1 class="hero-title">
                 让操作 <span>自然流动</span>
             </h1>
             <p class="subtitle">
@@ -718,31 +810,31 @@
             </div>
             <div class="hero-stats">
                 <div class="stat">
-                    <div class="num">3</div>
+                    <div class="num" data-target="3">0</div>
                     <div class="label">智能入口</div>
                 </div>
                 <div class="stat">
-                    <div class="num">1</div>
+                    <div class="num" data-target="1">0</div>
                     <div class="label">单文件 EXE</div>
                 </div>
                 <div class="stat">
-                    <div class="num">4</div>
+                    <div class="num" data-target="4">0</div>
                     <div class="label">核心模块</div>
                 </div>
                 <div class="stat">
-                    <div class="num">Word</div>
+                    <div class="num" style="color:#0f172a;">Word</div>
                     <div class="label">标准输出</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== 智能操作流（两行两列） ===== -->
+    <!-- ===== 智能操作流 ===== -->
     <section class="section" style="padding-top:0;">
         <div class="container">
             <h2 class="section-title">智能操作流</h2>
             <p class="section-desc">从任务到操作票，全流程自动流转</p>
-            <div class="flow-grid">
+            <div class="flow-grid" id="flowGrid">
                 <div class="flow-card">
                     <div class="step-num">1</div>
                     <div class="icon"><i class="fas fa-keyboard"></i></div>
@@ -776,7 +868,7 @@
         <div class="container">
             <h2 class="section-title">功能亮点</h2>
             <p class="section-desc">三路智能入口 + 规则驱动引擎 + 规范输出</p>
-            <div class="features-grid">
+            <div class="features-grid" id="featuresGrid">
                 <div class="feature-card">
                     <div class="icon"><i class="fas fa-route"></i></div>
                     <h3>三路智能入口</h3>
@@ -811,12 +903,12 @@
         </div>
     </section>
 
-    <!-- ===== 设计理念 ===== -->
+    <!-- ===== 设计理念（2×2固定布局） ===== -->
     <section class="section" id="philosophy">
         <div class="container">
             <h2 class="section-title">设计理念</h2>
             <p class="section-desc">不只是操作票生成器，而是智能操作流平台</p>
-            <div class="philosophy-grid">
+            <div class="philosophy-grid" id="philosophyGrid">
                 <div class="philosophy-item">
                     <div class="num">01</div>
                     <h4>规则驱动 · 逻辑关联</h4>
@@ -835,41 +927,21 @@
                 <div class="philosophy-item">
                     <div class="num">04</div>
                     <h4>可移植 · 免配置</h4>
-                    <p>单文件 EXE 双击即用；路径统一由 <code>app_paths.py</code> 管理，支持 <code>FLOWOPS_DATA_DIR</code> 覆盖。</p>
+                    <p>单文件 EXE 双击即用；路径统一由 <code>paths.py</code> 管理，支持 <code>FLOWOPS_DATA_DIR</code> 覆盖。</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- ===== 模块架构 ===== -->
-    <section class="section" id="modules">
-        <div class="container">
-            <h2 class="section-title">模块架构</h2>
-            <p class="section-desc">清晰解耦，核心模块各司其职</p>
-            <div class="modules-grid">
-                <div class="module-tag"><code>main.py</code> <span class="fn">入口/编排</span></div>
-                <div class="module-tag"><code>app_paths.py</code> <span class="fn">路径中枢</span></div>
-                <div class="module-tag"><code>jiexiqi7_1.py</code> <span class="fn">任务解析</span></div>
-                <div class="module-tag"><code>opsoutput1_3pro.py</code> <span class="fn">步骤生成</span></div>
-                <div class="module-tag"><code>fduxiecsv7.py</code> <span class="fn">配置缓存</span></div>
-                <div class="module-tag"><code>pdfduqu5docpromax.py</code> <span class="fn">PDF/Word提取</span></div>
-                <div class="module-tag"><code>newsteps3_7.py</code> <span class="fn">逐项票加工</span></div>
-                <div class="module-tag"><code>outputdoc3_3.py</code> <span class="fn">文档生成</span></div>
-                <div class="module-tag"><code>popup_notify.py</code> <span class="fn">弹窗通知</span></div>
-                <div class="module-tag"><code>version_manager.py</code> <span class="fn">版本/README同步</span></div>
+            <div class="tech-tagline">
+                <span>⚙️ 基于 Python 构建 · 数据与展示分离 · 支持规则 / 模板 / 附加配置自定义</span>
             </div>
-            <p style="text-align:center; color:#64748b; font-size:13px; margin-top:20px;">
-                📁 数据目录：<code>%LOCALAPPDATA%\FlowOps</code> ｜ 资源：<code>rules.json</code> · <code>device_config.csv</code> · <code>template.docx</code>
-            </p>
         </div>
     </section>
 
-    <!-- ===== 用户评价 ===== -->
+    <!-- ===== 用户评价（3条） ===== -->
     <section class="section" id="testimonials">
         <div class="container">
             <h2 class="section-title">用户怎么说</h2>
             <p class="section-desc">来自配电运检一线人员的真实反馈</p>
-            <div class="testimonials-grid">
+            <div class="testimonials-grid" id="testimonialsGrid">
                 <div class="testimonial-card">
                     <div class="text">“以前编操作票全靠手工排列，容易漏项。FlowOps 自动生成逻辑关联的操作流，准确率提升太多了。”</div>
                     <div class="author">张工</div>
@@ -889,43 +961,32 @@
         </div>
     </section>
 
-    <!-- ===== FAQ ===== -->
+    <!-- ===== FAQ（3条） ===== -->
     <section class="section" id="faq">
         <div class="container">
             <h2 class="section-title">常见问题</h2>
             <p class="section-desc">快速上手 FlowOps</p>
             <div class="faq-list">
                 <div class="faq-item">
-                    <div class="question"><span>FlowOps 需要安装 Python 环境吗？</span><i class="fas fa-chevron-down"></i></div>
+                    <div class="question">
+                        <span>FlowOps 需要安装 Python 环境吗？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                     <div class="answer">不需要。FlowOps 编译为<strong>单文件 EXE</strong>，双击即可运行，无需任何额外运行时环境。</div>
                 </div>
                 <div class="faq-item">
-                    <div class="question"><span>支持哪些输入格式？</span><i class="fas fa-chevron-down"></i></div>
-                    <div class="answer">支持三种入口：① 操作任务文本（综合票）；② <code>.doc/.docx/.pdf</code> 文件路径（逐项票）；③ <code>.csv</code> 文件路径（合并附加配置）。</div>
-                </div>
-                <div class="faq-item">
-                    <div class="question"><span>附加配置 0/2/3 分别代表什么？</span><i class="fas fa-chevron-down"></i></div>
-                    <div class="answer"><strong>0</strong>：环网箱无刀闸 / 开闭所无接地刀闸；<strong>2</strong>：三工位环网箱刀闸后缀为2 / 柱开双刀闸；<strong>3</strong>：三工位环网箱刀闸后缀为1。程序运行时会自动提示。</div>
-                </div>
-                <div class="faq-item">
-                    <div class="question"><span>如何自定义规则或模板？</span><i class="fas fa-chevron-down"></i></div>
-                    <div class="answer">直接替换数据目录（<code>%LOCALAPPDATA%\FlowOps</code>）下的 <code>rules.json</code> 或 <code>template.docx</code> 即可，无需重打包。</div>
-                </div>
-                <div class="faq-item">
-                    <div class="question"><span>生成的操票是什么格式？存在哪里？</span><i class="fas fa-chevron-down"></i></div>
-                    <div class="answer">自动保存为 <strong>Word (.docx)</strong> 格式，排版整洁，可直接打印。输出到 <code>桌面\&lt;指令号前6位&gt; 操作票\</code> 目录。</div>
-                </div>
-                <div class="faq-item">
-                    <div class="question"><span>如何获取操作票编号？</span><i class="fas fa-chevron-down"></i></div>
-                    <div class="answer">FlowOps 会记住上一轮票号，支持<strong>一键累加 (+1)</strong>，并在每张票后汇总编号映射，方便回填“操作票编号在线表”。</div>
-                </div>
-                <!-- ===== 新增 FAQ：引导用户查看 README ===== -->
-                <div class="faq-item">
-                    <div class="question"><span>如何快速上手 FlowOps？</span><i class="fas fa-chevron-down"></i></div>
-                    <div class="answer">
-                        软件包内附带了完整的 <strong>README 使用说明</strong>，包含运行流程、输入要求、输出格式、维护方法等详细信息。
-                        建议先阅读 README，再开始使用。
+                    <div class="question">
+                        <span>如何自定义规则、模板或附加配置？</span>
+                        <i class="fas fa-chevron-down"></i>
                     </div>
+                    <div class="answer">直接替换数据目录（<code>%LOCALAPPDATA%\FlowOps</code>）下的 <code>rules.json</code>、<code>template.docx</code> 或 <code>device_config.csv</code> 即可，无需重新打包。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question">
+                        <span>如何快速上手 FlowOps？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">软件包内附带了完整的 <strong>README 使用说明</strong>，包含运行流程、输入要求、输出格式、维护方法等详细信息。建议先阅读 README，再开始使用。</div>
                 </div>
             </div>
         </div>
@@ -936,7 +997,6 @@
         <div class="container">
             <h2>准备好让操作自然流动了吗？</h2>
             <p class="sub">下载 FlowOps，体验智能操作票生成的全新方式。</p>
-            <!-- 按钮文字已改为含版本号，链接替换为你实际的 OSS 地址 -->
             <a href="https://flowops.oss-cn-wuhan-lr.aliyuncs.com/FlowOps.exe" class="btn-primary" style="font-size:18px; padding:16px 52px;">
                 <i class="fas fa-download"></i> 下载 FlowOps v1.2.1
             </a>
@@ -959,7 +1019,6 @@
             <div class="links">
                 <a href="#features">功能</a>
                 <a href="#philosophy">理念</a>
-                <a href="#modules">架构</a>
                 <a href="#testimonials">评价</a>
                 <a href="#faq">常见问题</a>
                 <a href="#download">下载</a>
@@ -972,6 +1031,84 @@
             </div>
         </div>
     </footer>
+
+    <!-- ============================================================ -->
+    <!-- JavaScript -->
+    <!-- ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ===== 1. 导航栏滚动阴影 =====
+            const navbar = document.getElementById('navbar');
+
+            function handleNavScroll() {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+
+            window.addEventListener('scroll', handleNavScroll, { passive: true });
+            handleNavScroll();
+
+            // ===== 2. Intersection Observer：滚动渐入 =====
+            const observeTargets = document.querySelectorAll(
+                '.flow-card, .feature-card, .philosophy-item, .testimonial-card'
+            );
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -30px 0px'
+            });
+
+            observeTargets.forEach(el => observer.observe(el));
+
+            // ===== 3. 统计数字滚动 =====
+            const statNumbers = document.querySelectorAll('.hero-stats .stat .num[data-target]');
+
+            const numberObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = parseInt(el.getAttribute('data-target'), 10);
+                        if (isNaN(target) || target <= 0) return;
+                        if (el.dataset.animated === 'true') return;
+                        el.dataset.animated = 'true';
+
+                        const duration = 1200;
+                        const startTime = performance.now();
+
+                        function updateNumber(currentTime) {
+                            const elapsed = currentTime - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            const eased = 1 - Math.pow(1 - progress, 3);
+                            const currentValue = Math.round(target * eased);
+                            el.textContent = currentValue;
+                            if (progress < 1) {
+                                requestAnimationFrame(updateNumber);
+                            } else {
+                                el.textContent = target;
+                            }
+                        }
+                        requestAnimationFrame(updateNumber);
+                    }
+                });
+            }, {
+                threshold: 0.3
+            });
+
+            statNumbers.forEach(el => numberObserver.observe(el));
+
+        })();
+    </script>
 
 </body>
 </html>
