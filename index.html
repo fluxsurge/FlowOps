@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FlowOps · 智能操作流生成平台</title>
+    <!-- 网站图标：将 FlowOps.ico 放到仓库根目录即可 -->
+    <link rel="icon" href="/FlowOps.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/FlowOps.ico" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
         * {
@@ -245,54 +248,57 @@
             border-top: 1px solid #e2e8f0;
         }
 
-        /* ===== 流程 ===== */
-        .flow-steps {
+        /* ===== 智能操作流（两行两列） ===== */
+        .flow-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 16px;
-            max-width: 900px;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 720px;
             margin: 0 auto;
         }
 
-        .flow-step {
+        .flow-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 20px 16px;
+            border-radius: 14px;
+            padding: 24px 20px;
             text-align: center;
+            position: relative;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
 
-        .flow-step:hover {
+        .flow-card:hover {
             border-color: #4f6df5;
-            box-shadow: 0 4px 12px rgba(79, 109, 245, 0.08);
+            box-shadow: 0 4px 16px rgba(79, 109, 245, 0.08);
         }
 
-        .flow-step .icon {
+        .flow-card .step-num {
+            display: inline-block;
+            background: #eef2ff;
+            color: #4f6df5;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+
+        .flow-card .icon {
             font-size: 28px;
             color: #4f6df5;
             margin-bottom: 6px;
         }
 
-        .flow-step .label {
-            font-size: 14px;
-            font-weight: 600;
+        .flow-card .label {
+            font-size: 15px;
+            font-weight: 700;
             color: #0f172a;
         }
 
-        .flow-step .desc {
-            font-size: 12px;
+        .flow-card .desc {
+            font-size: 13px;
             color: #64748b;
             margin-top: 2px;
-        }
-
-        .flow-arrow {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #94a3b8;
-            font-size: 20px;
-            padding: 0 4px;
         }
 
         /* ===== 功能卡片 ===== */
@@ -341,7 +347,7 @@
             color: #0f172a;
         }
 
-        /* ===== 理念 ===== */
+        /* ===== 设计理念 ===== */
         .philosophy-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -353,7 +359,7 @@
             border-radius: 12px;
             padding: 24px 20px;
             border-left: 4px solid #4f6df5;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
         }
 
         .philosophy-item .num {
@@ -437,7 +443,7 @@
         }
 
         .testimonial-card:hover {
-            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
         }
 
         .testimonial-card .text {
@@ -512,6 +518,13 @@
 
         .faq-item .answer strong {
             color: #0f172a;
+        }
+
+        .faq-item .answer .readme-link {
+            color: #4f6df5;
+            font-weight: 600;
+            text-decoration: underline;
+            cursor: pointer;
         }
 
         /* ===== Download ===== */
@@ -607,12 +620,6 @@
             .hero-stats .stat .num {
                 font-size: 22px;
             }
-            .flow-steps {
-                grid-template-columns: 1fr 1fr;
-            }
-            .flow-arrow {
-                display: none;
-            }
             .features-grid {
                 grid-template-columns: 1fr;
             }
@@ -642,10 +649,23 @@
                 gap: 10px;
                 justify-content: center;
             }
-            .modules-grid {
-                grid-template-columns: 1fr;
+            .flow-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
             }
-            .flow-steps {
+            .flow-card {
+                padding: 16px 12px;
+            }
+            .flow-card .icon {
+                font-size: 22px;
+            }
+            .flow-card .label {
+                font-size: 14px;
+            }
+            .flow-card .desc {
+                font-size: 12px;
+            }
+            .modules-grid {
                 grid-template-columns: 1fr;
             }
             .faq-item .question {
@@ -717,31 +737,32 @@
         </div>
     </section>
 
-    <!-- ===== 流程可视化 ===== -->
+    <!-- ===== 智能操作流（两行两列） ===== -->
     <section class="section" style="padding-top:0;">
         <div class="container">
             <h2 class="section-title">智能操作流</h2>
             <p class="section-desc">从任务到操作票，全流程自动流转</p>
-            <div class="flow-steps">
-                <div class="flow-step">
+            <div class="flow-grid">
+                <div class="flow-card">
+                    <div class="step-num">1</div>
                     <div class="icon"><i class="fas fa-keyboard"></i></div>
                     <div class="label">输入任务</div>
                     <div class="desc">文本 / PDF / Word</div>
                 </div>
-                <div class="flow-arrow"><i class="fas fa-chevron-right"></i></div>
-                <div class="flow-step">
+                <div class="flow-card">
+                    <div class="step-num">2</div>
                     <div class="icon"><i class="fas fa-brain"></i></div>
                     <div class="label">自动解析</div>
                     <div class="desc">设备 / 状态 / PT识别</div>
                 </div>
-                <div class="flow-arrow"><i class="fas fa-chevron-right"></i></div>
-                <div class="flow-step">
+                <div class="flow-card">
+                    <div class="step-num">3</div>
                     <div class="icon"><i class="fas fa-cogs"></i></div>
                     <div class="label">规则匹配</div>
                     <div class="desc">四元组精确索引</div>
                 </div>
-                <div class="flow-arrow"><i class="fas fa-chevron-right"></i></div>
-                <div class="flow-step">
+                <div class="flow-card">
+                    <div class="step-num">4</div>
                     <div class="icon"><i class="fas fa-file-word"></i></div>
                     <div class="label">生成操作票</div>
                     <div class="desc">Word 输出 · 可打印</div>
@@ -898,6 +919,14 @@
                     <div class="question"><span>如何获取操作票编号？</span><i class="fas fa-chevron-down"></i></div>
                     <div class="answer">FlowOps 会记住上一轮票号，支持<strong>一键累加 (+1)</strong>，并在每张票后汇总编号映射，方便回填“操作票编号在线表”。</div>
                 </div>
+                <!-- ===== 新增 FAQ：引导用户查看 README ===== -->
+                <div class="faq-item">
+                    <div class="question"><span>如何快速上手 FlowOps？</span><i class="fas fa-chevron-down"></i></div>
+                    <div class="answer">
+                        软件包内附带了完整的 <strong>README 使用说明</strong>，包含运行流程、输入要求、输出格式、维护方法等详细信息。
+                        建议先阅读 README，再开始使用。
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -907,12 +936,12 @@
         <div class="container">
             <h2>准备好让操作自然流动了吗？</h2>
             <p class="sub">下载 FlowOps，体验智能操作票生成的全新方式。</p>
-            <!-- 将 href="#" 替换为你自己的 OSS/COS 直链地址即可 -->
+            <!-- 按钮文字已改为含版本号，链接替换为你实际的 OSS 地址 -->
             <a href="https://flowops.oss-cn-wuhan-lr.aliyuncs.com/FlowOps.exe" class="btn-primary" style="font-size:18px; padding:16px 52px;">
                 <i class="fas fa-download"></i> 下载 FlowOps v1.2.1
             </a>
             <div class="meta">
-                <i class="fas fa-box"></i> 单文件 EXE · 约 15 MB
+                <i class="fas fa-box"></i> 单文件 EXE · 约 40 MB
                 <span style="margin:0 12px;">|</span>
                 <i class="fab fa-windows"></i> Windows 10 / 11
                 <span style="margin:0 12px;">|</span>
@@ -939,7 +968,7 @@
                 © 2026 FlowOps · 让操作，自然流动
             </div>
             <div class="version">
-                版本 1.2.1 · 最后更新 2026-08-27
+                版本 1.2.1 · 最后更新 2026-08-29
             </div>
         </div>
     </footer>
