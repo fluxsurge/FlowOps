@@ -146,7 +146,7 @@
         .hero .subtitle {
             font-size: 20px;
             color: #475569;
-            max-width: 680px;
+            max-width: 720px;
             margin: 0 auto 12px;
             opacity: 0;
             animation: fadeUp 0.7s ease 0.4s forwards;
@@ -675,11 +675,6 @@
             color: #1e293b;
         }
 
-        .disclaimer-box .highlight {
-            color: #4f6df5;
-            font-weight: 600;
-        }
-
         .download-section {
             text-align: center;
             padding: 48px 0 56px;
@@ -884,7 +879,7 @@
         <div class="container">
             <div class="logo">
                 <i class="fas fa-bolt"></i> FlowOps
-                <span>v1.2.1</span>
+                <span>v1.3.0</span>
             </div>
             <div class="nav-links">
                 <a href="#features">功能</a>
@@ -900,14 +895,14 @@
     <section class="hero">
         <div class="container">
             <div class="hero-badge">
-                <i class="fas fa-arrow-trend-up"></i> v1.2.1 · 智能操作流生成平台
+                <i class="fas fa-arrow-trend-up"></i> v1.3.0 · 智能操作流生成平台
             </div>
             <h1 class="hero-title">
                 让每一步操作 <span>自然流动</span>
             </h1>
             <p class="subtitle">
-                FlowOps 面向配电运检场景，通过 <strong>任务解析 · 规则匹配 · 模板引擎</strong>，
-                自动将操作任务转换为逻辑关联的操作项目，生成合规的标准化操作票序列。
+                FlowOps 面向配电运检场景，通过构建 <strong>“任务解析 · 规则匹配 · 模板引擎”三位一体的技术闭环</strong>，
+                自动将操作任务转换为逻辑关联、顺序合规的标准化操作票项目序列。
             </p>
             <p class="hero-tagline">⚡ 操作任务输入 → 自动解析 → 智能匹配 → 操作项目生成 → 形成合规的标准化操作票序列</p>
             <div class="hero-actions">
@@ -928,7 +923,7 @@
                     <div class="label">单文件 EXE</div>
                 </div>
                 <div class="stat">
-                    <div class="num" data-target="4">0</div>
+                    <div class="num" data-target="6">0</div>
                     <div class="label">核心模块</div>
                 </div>
                 <div class="stat">
@@ -980,17 +975,17 @@
                 <div class="feature-card">
                     <div class="icon"><i class="fas fa-route"></i></div>
                     <h3>三路智能入口</h3>
-                    <p>操作任务文本 → 综合票；<code>.doc/.docx/.pdf</code> 路径 → 逐项票；<code>.csv</code> → 合并附加配置。</p>
+                    <p>操作任务文本 → 综合票；<code>.doc/.docx/.pdf</code> 路径 → 逐项票；<code>.csv</code> → 合并附加配置。支持直接按 Enter 读取剪贴板自动分流。</p>
                 </div>
                 <div class="feature-card">
-                    <div class="icon"><i class="fas fa-microchip"></i></div>
-                    <h3>自动解析</h3>
-                    <p>识别设备类型、开关号、前后状态，兼容“冷备用/热备用”等易错表述，PT 设备自动归一。</p>
+                    <div class="icon"><i class="fas fa-check-circle"></i></div>
+                    <h3>自动解析 &amp; 配置校验</h3>
+                    <p>自动识别设备类型、状态及 PT 属性，兼容“冷备用/热备用”等易错表述；按设备类型自动校验附加配置合法性（开闭所仅 0、柱开仅 2、刀闸无配置），启动即剔除不合规项，确保配置库干净可执行。</p>
                 </div>
                 <div class="feature-card">
                     <div class="icon"><i class="fas fa-table"></i></div>
                     <h3>规则驱动引擎</h3>
-                    <p>以 <code>(设备类型, 前状态, 后状态, 配置)</code> 四元组精确匹配模板，针对特殊设备，通过附加配置做精准微调；配置自动留存本地，随使用频次增加，匹配精度持续提升。</p>
+                    <p>以 <code>(设备类型, 前状态, 后状态, 配置)</code> 四元组精确匹配模板，派生开关/刀闸全名；针对特殊设备通过附加配置精准微调，配置自动留存，<strong>越用越准</strong>。</p>
                 </div>
                 <div class="feature-card">
                     <div class="icon"><i class="fas fa-file-alt"></i></div>
@@ -1005,7 +1000,7 @@
                 <div class="feature-card">
                     <div class="icon"><i class="fas fa-gem"></i></div>
                     <h3>开箱即用 · 可移植</h3>
-                    <p>单文件 EXE，无需 Python 环境；数据目录自动播种，规则/模板可独立替换。</p>
+                    <p>单文件 EXE，无需 Python 环境；数据目录自动播种，规则/模板可独立替换；无第三方运行时依赖。</p>
                 </div>
             </div>
         </div>
@@ -1024,7 +1019,7 @@
                 <div class="philosophy-item">
                     <div class="num">02</div>
                     <h4>克制界面</h4>
-                    <p>将复杂逻辑内化于引擎，将简洁体验交给用户。界面克制，仅错误用红色，其余靠图标区分，专注高效。</p>
+                    <p>将复杂逻辑内化于引擎，将简洁体验交给用户。解析/提取/配置表不带外框线，仅错误用红色，其余靠图标区分，专注高效。</p>
                 </div>
                 <div class="philosophy-item">
                     <div class="num">03</div>
@@ -1034,11 +1029,8 @@
                 <div class="philosophy-item">
                     <div class="num">04</div>
                     <h4>可移植 · 免配置</h4>
-                    <p>单文件 EXE 双击即用；路径统一由 <code>paths.py</code> 管理，支持 <code>FLOWOPS_DATA_DIR</code> 覆盖。</p>
+                    <p>单文件 EXE 双击即用；路径统一由 <code>app_paths.py</code> 管理，支持 <code>FLOWOPS_DATA_DIR</code> 覆盖。</p>
                 </div>
-            </div>
-            <div class="tech-tagline">
-                <span>⚙️ 基于 Python 构建 · 数据与展示分离 · 支持规则 / 模板 / 附加配置自定义</span>
             </div>
         </div>
     </section>
@@ -1128,7 +1120,7 @@
                         <span>如何自定义规则、模板或附加配置？</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
-                    <div class="answer">直接替换数据目录（<code>%LOCALAPPDATA%\FlowOps</code>）下的 <code>rules.json</code>、<code>template.docx</code> 或 <code>device_config.csv</code> 即可，无需重新打包。</div>
+                    <div class="answer">直接替换数据目录（<code>%LOCALAPPDATA%\FlowOps</code>）下的 <code>rules.json</code>、<code>template.docx</code> 或 <code>device_config.csv</code> 即可，无需重新打包。配置项写在同目录 <code>settings.json</code>（键值对）。</div>
                 </div>
                 <div class="faq-item">
                     <div class="question">
@@ -1136,6 +1128,13 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="answer">软件包内附带了完整的 <strong>README 使用说明</strong>，包含运行流程、输入要求、输出格式、维护方法等详细信息。建议先阅读 README，再开始使用。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question">
+                        <span>为什么说“越用越准”？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">程序会把每次输入的特殊设备附加配置自动留存到本地 <code>device_config.csv</code>。随着持续使用，本地配置库不断扩充，特殊设备的规则匹配精度随之提升。</div>
                 </div>
             </div>
         </div>
@@ -1166,7 +1165,7 @@
             <h2>准备好让每一步操作自然流动了吗？</h2>
             <p class="sub">下载 FlowOps，体验智能操作票生成的全新方式。</p>
             <a href="https://flowops.oss-cn-wuhan-lr.aliyuncs.com/FlowOps.exe" class="btn-primary" style="font-size:18px; padding:16px 52px;">
-                <i class="fas fa-download"></i> 下载 FlowOps v1.2.1
+                <i class="fas fa-download"></i> 下载 FlowOps v1.3.0
             </a>
             <div class="meta">
                 <i class="fas fa-box"></i> 单文件 EXE · 约 40 MB
@@ -1195,7 +1194,7 @@
                 © 2026 FlowOps · 让每一步操作，自然流动
             </div>
             <div class="version">
-                版本 1.2.1 · 最后更新 2026-08-30
+                版本 1.3.0 · 最后更新 2026-08-31
             </div>
         </div>
     </footer>
